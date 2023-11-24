@@ -1,5 +1,7 @@
 section {
     background-image: url('https://pixner.net/sbidu/main/assets/images/banner/banner-bg-1.png');
+    border-bottom-left-radius: 120px;
+    border-bottom-right-radius: 120px;
 
     @media (min-width: 992px) {
         padding: 270px 0 270px;
