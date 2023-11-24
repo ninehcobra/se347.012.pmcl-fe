@@ -1,7 +1,9 @@
-import { Inter } from 'next/font/google'
-import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+import 'react-loading-skeleton/dist/skeleton.css'
+import "./globals.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 export const metadata = {
   title: 'Create Next App',
@@ -11,7 +13,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <script src="https://kit.fontawesome.com/03244eb91d.js" crossOrigin="anonymous"></script>
+      </head>
+      <body >{children}</body>
     </html>
   )
 }

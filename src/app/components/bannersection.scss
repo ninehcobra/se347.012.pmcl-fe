@@ -1,0 +1,73 @@
+section {
+    background-image: url('https://pixner.net/sbidu/main/assets/images/banner/banner-bg-1.png');
+
+    @media (min-width: 992px) {
+        padding: 270px 0 270px;
+        position: relative;
+        overflow: hidden;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: block;
+    }
+
+    @media (min-width: 1200px) {
+        padding: 280px 0 280px;
+    }
+
+    .banner-thumb {
+        position: relative;
+
+        img {
+            -ms-transform: translateY(-45%);
+            transform: translateY(-45%);
+            left: 0;
+            position: absolute;
+            top: 50%;
+            vertical-align: middle;
+        }
+    }
+
+    .banner-content {
+        position: relative;
+        z-index: 2;
+        color: #ffffff;
+
+        h5 {
+            margin-bottom: 15px;
+            color: #00f7ff;
+            font-weight: bold;
+            font-size: 24px;
+            line-height: 28px;
+            margin-top: -5px;
+        }
+
+        h1 {
+            font-size: 80px;
+            line-height: 90px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 22px;
+            line-height: 34px;
+            margin: 0;
+            margin-bottom: 33px;
+        }
+
+        a {
+            border-radius: 30px;
+            padding: 12px 48px 8px;
+            line-height: 40px;
+            box-shadow: 0px 19px 56px 0px rgba(0, 0, 0, 0.2);
+            background: -webkit-linear-gradient(92deg, #ff8359 0%, #ffdf40 100%);
+            letter-spacing: 2px;
+            color: #ffffff;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 18px;
+            text-decoration: none;
+        }
+    }
+}
