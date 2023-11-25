@@ -41,7 +41,7 @@ const Login = () => {
                             <div className="section-header mb-0">
                                 <h3 className="title mt-0">LẦN ĐẦU?</h3>
                                 <p>Đăng ký và tạo tài khoản ở đây</p>
-                                <Link href="/register" className="custom-button transparent">ĐĂNG KÝ</Link>
+                                <a href="/register" className="custom-button transparent">ĐĂNG KÝ</a>
                             </div>
                         </div>
                     </div>

@@ -37,9 +37,9 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link className="user-button" href={'/login'}>
+                                <a className="user-button" href={'/login'}>
                                     <i className="fa-regular fa-user"></i>
-                                </Link>
+                                </a>
                             </li>
                         </ul>
                     </div>

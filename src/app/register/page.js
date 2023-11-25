@@ -54,7 +54,7 @@ const Register = () => {
                             <div className="section-header mb-0">
                                 <h3 className="title mt-0">ĐÃ CÓ TÀI KHOẢN?</h3>
                                 <p>Đăng nhập và đi tới bảng điều khiển</p>
-                                <Link href="/login" className="custom-button transparent">ĐĂNG NHẬP</Link>
+                                <a href="/login" className="custom-button transparent">ĐĂNG NHẬP</a>
                             </div>
                         </div>
                     </div>

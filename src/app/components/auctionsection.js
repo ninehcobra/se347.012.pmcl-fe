@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 const AuctionSection = () => {
     return (
         <div>
@@ -69,7 +71,7 @@ const AuctionSection = () => {
                                 </div>
                                 <div className="auction-content">
                                     <h6 className="title">
-                                        <a href="./product-details.html">Ring With Clear Stone Accents</a>
+                                        <a href="./product-details.html">Nhẫn kim cương</a>
                                     </h6>
                                     <div className="bid-area">
                                         <div className="bid-amount">
@@ -77,7 +79,7 @@ const AuctionSection = () => {
                                                 <i className="fa-solid fa-gavel"></i>
                                             </div>
                                             <div className="amount-content">
-                                                <div className="current">Current Bid</div>
+                                                <div className="current">Giá đấu giá hiện tại</div>
                                                 <div className="amount">$876.00</div>
                                             </div>
                                         </div>
@@ -86,7 +88,7 @@ const AuctionSection = () => {
                                                 <i className="flaticon-money"></i>
                                             </div>
                                             <div className="amount-content">
-                                                <div className="current">Buy Now</div>
+                                                <div className="current">Mua ngay</div>
                                                 <div className="amount">$5,00.00</div>
                                             </div>
                                         </div>
@@ -95,10 +97,10 @@ const AuctionSection = () => {
                                         <div className="countdown">
                                             <div id="bid_counter24">0d  : 6h  : 19m  : 32s</div>
                                         </div>
-                                        <span className="total-bids">30 Bids</span>
+                                        <span className="total-bids">30 lượt Đấu giá</span>
                                     </div>
                                     <div className="text-center">
-                                        <a href="#0" className="custom-button">Submit a bid</a>
+                                        <a href="#0" className="custom-button">Tham gia</a>
                                     </div>
                                 </div>
                             </div>
@@ -112,7 +114,7 @@ const AuctionSection = () => {
                                 </div>
                                 <div className="auction-content">
                                     <h6 className="title">
-                                        <a href="./product-details.html">Gold Ring With Clear Stones</a>
+                                        <a href="./product-details.html">Nhẫn vàng</a>
                                     </h6>
                                     <div className="bid-area">
                                         <div className="bid-amount">
@@ -120,7 +122,7 @@ const AuctionSection = () => {
                                                 <i className="fa-solid fa-gavel"></i>
                                             </div>
                                             <div className="amount-content">
-                                                <div className="current">Current Bid</div>
+                                                <div className="current">Giá đấu giá hiện tại</div>
                                                 <div className="amount">$876.00</div>
                                             </div>
                                         </div>
@@ -129,7 +131,7 @@ const AuctionSection = () => {
                                                 <i className="flaticon-money"></i>
                                             </div>
                                             <div className="amount-content">
-                                                <div className="current">Buy Now</div>
+                                                <div className="current">Mua ngay</div>
                                                 <div className="amount">$5,00.00</div>
                                             </div>
                                         </div>
@@ -138,10 +140,10 @@ const AuctionSection = () => {
                                         <div className="countdown">
                                             <div id="bid_counter25">0d  : 6h  : 19m  : 32s</div>
                                         </div>
-                                        <span className="total-bids">30 Bids</span>
+                                        <span className="total-bids">30 lượt Đấu giá</span>
                                     </div>
                                     <div className="text-center">
-                                        <a href="#0" className="custom-button">Submit a bid</a>
+                                        <a href="#0" className="custom-button">Tham gia</a>
                                     </div>
                                 </div>
                             </div>
@@ -153,10 +155,10 @@ const AuctionSection = () => {
                 <div className="container">
                     <div className="call-wrapper cl-white bg_img" data-background="./assets/images/call-in/call-bg.png" style={{ backgroundImage: 'url("https://pixner.net/sbidu/main/assets/images/call-in/call-bg.png")' }}>
                         <div className="section-header">
-                            <h3 className="title">Register for Free &amp; Start Bidding Now!</h3>
-                            <p>From cars to diamonds to iPhones, we have it all.</p>
+                            <h3 className="title">Đăng ký MIỄN PHÍ &amp; Bắt đầu đấu giá ngay bây giờ!</h3>
+                            <p>Từ xe hơi đến kim cương, chúng tôi có tất cả.</p>
                         </div>
-                        <a href="sign-up.html" className="custom-button white">Register</a>
+                        <a href="/register" className="custom-button white">Đăng Ký</a>
                     </div>
                 </div>
             </section>
@@ -185,12 +187,12 @@ const AuctionSection = () => {
                                                 <i className="flaticon-auction"></i>
                                             </div>
                                             <div className="amount-content">
-                                                <div className="current">Current Bid</div>
+                                                <div className="current">Giá đấu giá hiện tại</div>
                                                 <div className="amount">$876.00</div>
                                             </div>
                                         </div>
                                         <div className="bids-area">
-                                            Total Bids : <span className="total-bids">130 Bids</span>
+                                            Số lượt đấu giá : <span className="total-bids">130 lượt Đấu giá</span>
                                         </div>
                                     </div>
                                 </div>
@@ -211,12 +213,12 @@ const AuctionSection = () => {
                                                 <i className="flaticon-auction"></i>
                                             </div>
                                             <div className="amount-content">
-                                                <div className="current">Current Bid</div>
+                                                <div className="current">Giá đấu giá hiện tại</div>
                                                 <div className="amount">$876.00</div>
                                             </div>
                                         </div>
                                         <div className="bids-area">
-                                            Total Bids : <span className="total-bids">130 Bids</span>
+                                            Số lượt đấu giá : <span className="total-bids">130 lượt Đấu giá</span>
                                         </div>
                                     </div>
                                 </div>
@@ -237,12 +239,12 @@ const AuctionSection = () => {
                                                 <i className="flaticon-auction"></i>
                                             </div>
                                             <div className="amount-content">
-                                                <div className="current">Current Bid</div>
+                                                <div className="current">Giá đấu giá hiện tại</div>
                                                 <div className="amount">$876.00</div>
                                             </div>
                                         </div>
                                         <div className="bids-area">
-                                            Total Bids : <span className="total-bids">130 Bids</span>
+                                            Số lượt đấu giá : <span className="total-bids">130 lượt Đấu giá</span>
                                         </div>
                                     </div>
                                 </div>
@@ -263,12 +265,12 @@ const AuctionSection = () => {
                                                 <i className="flaticon-auction"></i>
                                             </div>
                                             <div className="amount-content">
-                                                <div className="current">Current Bid</div>
+                                                <div className="current">Giá đấu giá hiện tại</div>
                                                 <div className="amount">$876.00</div>
                                             </div>
                                         </div>
                                         <div className="bids-area">
-                                            Total Bids : <span className="total-bids">130 Bids</span>
+                                            Số lượt đấu giá : <span className="total-bids">130 lượt Đấu giá</span>
                                         </div>
                                     </div>
                                 </div>
@@ -289,12 +291,12 @@ const AuctionSection = () => {
                                                 <i className="flaticon-auction"></i>
                                             </div>
                                             <div className="amount-content">
-                                                <div className="current">Current Bid</div>
+                                                <div className="current">Giá đấu giá hiện tại</div>
                                                 <div className="amount">$876.00</div>
                                             </div>
                                         </div>
                                         <div className="bids-area">
-                                            Total Bids : <span className="total-bids">130 Bids</span>
+                                            Số lượt đấu giá : <span className="total-bids">130 lượt Đấu giá</span>
                                         </div>
                                     </div>
                                 </div>
@@ -315,12 +317,12 @@ const AuctionSection = () => {
                                                 <i className="flaticon-auction"></i>
                                             </div>
                                             <div className="amount-content">
-                                                <div className="current">Current Bid</div>
+                                                <div className="current">Giá đấu giá hiện tại</div>
                                                 <div className="amount">$876.00</div>
                                             </div>
                                         </div>
                                         <div className="bids-area">
-                                            Total Bids : <span className="total-bids">130 Bids</span>
+                                            Số lượt đấu giá : <span className="total-bids">130 lượt Đấu giá</span>
                                         </div>
                                     </div>
                                 </div>
@@ -333,8 +335,8 @@ const AuctionSection = () => {
                 <div className="container">
                     <div className="how-wrapper section-bg">
                         <div className="section-header text-lg-left">
-                            <h2 className="title">How it works</h2>
-                            <p>Easy 3 steps to win</p>
+                            <h2 className="title">Làm Thế Nào Để Tham Gia</h2>
+                            <p>Đơn giản với 3 bước</p>
                         </div>
                         <div className="row justify-content-center mb--40">
                             <div className="col-md-6 col-lg-4">
@@ -343,8 +345,8 @@ const AuctionSection = () => {
                                         <img src="https://pixner.net/sbidu/main/assets/images/how/how1.png" alt="how" />
                                     </div>
                                     <div className="how-content">
-                                        <h4 className="title">Sign Up</h4>
-                                        <p>No Credit Card Required</p>
+                                        <h4 className="title">Đăng nhập</h4>
+                                        <p>Không yêu cầu thẻ tín dụng</p>
                                     </div>
                                 </div>
                             </div>
@@ -354,8 +356,8 @@ const AuctionSection = () => {
                                         <img src="https://pixner.net/sbidu/main/assets/images/how/how2.png" alt="how" />
                                     </div>
                                     <div className="how-content">
-                                        <h4 className="title">Bid</h4>
-                                        <p>Bidding is free Only pay if you win</p>
+                                        <h4 className="title">Đấu giá</h4>
+                                        <p>Đấu giá miễn phí chỉ thanh toán khi bạn thắng</p>
                                     </div>
                                 </div>
                             </div>
@@ -365,8 +367,8 @@ const AuctionSection = () => {
                                         <img src="https://pixner.net/sbidu/main/assets/images/how/how3.png" alt="how" />
                                     </div>
                                     <div className="how-content">
-                                        <h4 className="title">Win</h4>
-                                        <p>Fun - Excitement - Great deals</p>
+                                        <h4 className="title">Chiến thắng</h4>
+                                        <p>Vui vẻ - Hào hứng - Deal hời</p>
                                     </div>
                                 </div>
                             </div>
