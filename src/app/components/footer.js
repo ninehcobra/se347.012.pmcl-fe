@@ -133,16 +133,16 @@ const Footer = () => {
                                 <h5 className="title">Theo dõi chúng tôi</h5>
                                 <ul className="links-list">
                                     <li>
-                                        <a href="#0"><i className="fas fa-phone-alt"></i>0797260870</a>
+                                        <a href="callto:0797260870"><i className="fas fa-phone-alt"></i>0797260870</a>
                                     </li>
                                     <li>
-                                        <a href="#0"><i className="fas fa-blender-phone"></i>0797260870</a>
+                                        <a href="callto:0797260870"><i className="fas fa-blender-phone"></i>0797260870</a>
                                     </li>
                                     <li>
-                                        <a href="#0"><i className="fas fa-envelope-open-text"></i>congchinh2903@gmail.com</a>
+                                        <a href="mailto:congchinh2903@gmail.com"><i className="fas fa-envelope-open-text"></i>congchinh2903@gmail.com</a>
                                     </li>
                                     <li>
-                                        <a href="#0"><i className="fas fa-location-arrow"></i>VNU-HCM University of Information Technology</a>
+                                        <a href="https://maps.app.goo.gl/EcxH1YfpfcTpLANc8"><i className="fas fa-location-arrow"></i>VNU-HCM University of Information Technology</a>
                                     </li>
                                 </ul>
                                 <ul className="social-icons">
