@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 const Register = () => {
     return (
         <div>
@@ -13,44 +15,46 @@ const Register = () => {
                     <div className="account-wrapper mt--100 mt-lg--440">
                         <div className="left-side">
                             <div className="section-header">
-                                <h2 className="title">HI, THERE</h2>
-                                <p>You can log in to your Sbidu account here.</p>
+                                <h2 className="title">ĐĂNG KÝ</h2>
+                                <p>Chúng tôi rất vui khi bạn ở đây.</p>
                             </div>
-                            <ul className="login-with">
-                                <li>
-                                    <a href="#0"><i className="fab fa-facebook"></i>Log in with Facebook</a>
-                                </li>
-                                <li>
-                                    <a href="#0"><i className="fab fa-google-plus"></i>Log in with Google</a>
-                                </li>
-                            </ul>
-                            <div className="or">
-                                <span>Or</span>
-                            </div>
+
                             <form className="login-form">
                                 <div className="form-group mb-30">
                                     <label for="login-email"><i className="far fa-envelope"></i></label>
-                                    <input type="text" id="login-email" placeholder="Email Address" />
+                                    <input type="text" id="login-email" placeholder="Địa chỉ EMAIL" />
+                                </div>
+                                <div className="form-group mb-30">
+                                    <label for="name"><i className="fa-solid fa-signature"></i></label>
+                                    <input type="text" id="name" placeholder="Họ và tên" />
+                                </div>
+                                <div className="form-group mb-30">
+                                    <label for="phone"><i className="fa-solid fa-phone"></i></label>
+                                    <input type="text" id="phone" placeholder="Số điện thoại" />
+                                </div>
+                                <div className="form-group mb-30">
+                                    <label for="address"><i className="fa-solid fa-map-location-dot"></i></label>
+                                    <input type="text" id="address" placeholder="Địa chỉ" />
                                 </div>
                                 <div className="form-group">
                                     <label for="login-pass"><i className="fas fa-lock"></i></label>
-                                    <input type="password" id="login-pass" placeholder="Password" />
+                                    <input type="password" id="login-pass" placeholder="Mật khẩu" />
                                     <span className="pass-type"><i className="fas fa-eye"></i></span>
                                 </div>
-
-                                <div className="form-group">
-                                    <a href="#0">Forgot Password?</a>
+                                <div style={{ margin: '20px 0' }} className="form-group checkgroup mb-30">
+                                    <input type="checkbox" name="terms" id="check" /><label for="check">Đồng ý với các điều khoản</label>
                                 </div>
+
                                 <div className="form-group mb-0">
-                                    <button type="submit" className="custom-button">LOG IN</button>
+                                    <button type="submit" className="custom-button">ĐĂNG KÝ</button>
                                 </div>
                             </form>
                         </div>
                         <div style={{ backgroundColor: '#7757f7 ' }} className="right-side cl-white">
                             <div className="section-header mb-0">
-                                <h3 className="title mt-0">NEW HERE?</h3>
-                                <p>Sign up and create your Account</p>
-                                <a href="sign-up.html" className="custom-button transparent">Sign Up</a>
+                                <h3 className="title mt-0">ĐÃ CÓ TÀI KHOẢN?</h3>
+                                <p>Đăng nhập và đi tới bảng điều khiển</p>
+                                <Link href="/login" className="custom-button transparent">ĐĂNG NHẬP</Link>
                             </div>
                         </div>
                     </div>

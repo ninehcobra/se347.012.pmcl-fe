@@ -37,7 +37,7 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <Link className="user-button" href={'/'}>
+                                <Link className="user-button" href={'/login'}>
                                     <i className="fa-regular fa-user"></i>
                                 </Link>
                             </li>
