@@ -1,0 +1,17 @@
+.slider-wrapper {
+    margin: 40px 0 20px 0;
+
+    .slider-item {
+        height: 500px;
+
+
+        .browse-item {
+            height: 90%;
+            background-color: aqua;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
