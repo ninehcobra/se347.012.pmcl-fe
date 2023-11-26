@@ -5,8 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ScrollToTopButton from './components/scrolltotop';
 import Footer from "./components/footer"
 import Header from "./components/header"
+import 'react-toastify/dist/ReactToastify.css';
+import { ReduxProvider } from './components/reduxprovider';
 
-
+import { ToastContainer } from 'react-toastify'
 
 
 export const metadata = {
@@ -23,10 +25,24 @@ export default function RootLayout({ children }) {
         <script src="https://kit.fontawesome.com/03244eb91d.js" crossOrigin="anonymous"></script>
       </head>
       <body >
-        <Header />
-        {children}
-        <Footer />
-        <ScrollToTopButton />
+        <ReduxProvider>
+          <Header />
+          {children}
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+          <Footer />
+          <ScrollToTopButton />
+        </ReduxProvider>
       </body>
     </html>
   )

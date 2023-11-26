@@ -2,9 +2,12 @@
 import Link from "next/link"
 import "./header.scss"
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 
 const Header = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const info = useSelector((state) => state.personalInfo)
+
     const handleScroll = () => {
         const scrollY = window.scrollY;
         setIsVisible(scrollY > 54);
@@ -16,6 +19,8 @@ const Header = () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+
     return (
         <header>
             <div className="header-top">
@@ -29,7 +34,7 @@ const Header = () => {
                                 </Link>
                             </li>
                         </ul>
-                        <ul className="cart-button-area">
+                        <ul style={info.name ? {} : { display: 'none' }} className="cart-button-area">
                             <li>
                                 <Link className="cart-button" href={'/'}>
                                     <i className="fa-solid fa-cart-shopping"></i>
@@ -37,7 +42,7 @@ const Header = () => {
                                 </Link>
                             </li>
                             <li>
-                                <a className="user-button" href={'/login'}>
+                                <a className="user-button" href={'/myaccount/dashboard'}>
                                     <i className="fa-regular fa-user"></i>
                                 </a>
                             </li>

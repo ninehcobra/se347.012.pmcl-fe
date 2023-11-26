@@ -1,6 +1,86 @@
+'use client'
 import Link from "next/link"
+import axios from "../../setup/axios"
+import { useEffect, useState } from "react"
+import { login } from "@/services/userService"
+import { toast } from 'react-toastify';
+import { useRouter } from "next/navigation"
+import { getUserAccount } from "@/services/userService"
 
 const Login = () => {
+    const router = useRouter()
+    const [username, setUsername] = useState()
+    const [password, setPassword] = useState()
+
+    const handleOnChange = (text, type) => {
+        if (type === 'username') {
+            setUsername(text)
+        }
+        else if (type === 'password') {
+            setPassword(text)
+        }
+    }
+
+    const fetchUser = async () => {
+        let res = await getUserAccount()
+        if (res && res.EC === 0 && res.DT) {
+            router.push('/myaccount/dashboard')
+        }
+    }
+
+    const inputValidation = () => {
+        let emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+        let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+        if (username === '' || password === '' || emailRegex.test(username) === false || passwordRegex.test(password) === false) {
+
+            return false
+        }
+
+        return true
+    }
+
+    const handleLogin = async () => {
+
+        let res = await login(username, password)
+        if (res) {
+            if (res.EC === 0) {
+                let data = {
+                    isAuthenticated: true,
+                    token: res.DT.access_token,
+                    account: {
+                        name: res.DT.name,
+                        address: res.DT.address,
+                        avatar: res.DT.avatar,
+                        email: res.DT.email,
+                        gender: res.DT.gender,
+                        roles: res.DT.roles
+                    }
+                }
+                localStorage.setItem("jwt", res.DT.access_token)
+                toast('Đăng nhập thành công')
+                router.push('/myaccount/dashboard')
+            }
+            else if (res.EC === 3) {
+                toast.error('Sai mật khẩu!')
+            }
+            else if (res.EC === 1) {
+                toast.error('Tài khoản không tồn tài!')
+            }
+            else if (res.EC === 2) {
+                toast.error('Vui lòng nhập đủ thông tin đăng nhập.')
+            }
+            else if (res.EC === -2) {
+                toast.error('Lỗi phát sinh từ server')
+            }
+            else if (res.EC === -5) {
+                toast.error('Không kết nối được với server')
+            }
+        }
+    }
+
+    useEffect(() => {
+        fetchUser()
+    }, [])
     return (
         <div>
             <div className="hero-section">
@@ -19,23 +99,23 @@ const Login = () => {
                                 <p>Bạn có thể đăng nhập vào ứng dụng tại đây.</p>
                             </div>
 
-                            <form className="login-form">
+                            <div className="login-form">
                                 <div className="form-group mb-30">
-                                    <label for="login-email"><i className="far fa-envelope"></i></label>
-                                    <input type="text" id="login-email" placeholder="Email Address" />
+                                    <label htmlFor="login-email"><i className="far fa-envelope"></i></label>
+                                    <input value={username} onChange={(e) => handleOnChange(e.target.value, 'username')} type="text" id="login-email" placeholder="Email Address" />
                                 </div>
                                 <div className="form-group">
-                                    <label for="login-pass"><i className="fas fa-lock"></i></label>
-                                    <input type="password" id="login-pass" placeholder="Password" />
+                                    <label htmlFor="login-pass"><i className="fas fa-lock"></i></label>
+                                    <input value={password} onChange={(e) => handleOnChange(e.target.value, 'password')} type="password" id="login-pass" placeholder="Password" />
                                     <span className="pass-type"><i className="fas fa-eye"></i></span>
                                 </div>
                                 <div className="form-group" style={{ margin: '20px' }}>
                                     <a href="#0">Quên mật khẩu?</a>
                                 </div>
                                 <div className="form-group mb-0">
-                                    <button type="submit" className="custom-button">ĐĂNG NHẬP</button>
+                                    <button onClick={handleLogin} className="custom-button">ĐĂNG NHẬP</button>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                         <div style={{ backgroundColor: '#7757f7 ' }} className="right-side cl-white">
                             <div className="section-header mb-0">
