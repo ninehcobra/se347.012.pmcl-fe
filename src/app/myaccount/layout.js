@@ -1,9 +1,14 @@
 'use client'
 import { AuthCheck } from "../components/authcheck"
 import { useDispatch, useSelector } from 'react-redux'
+import { usePathname } from 'next/navigation'
+import Link from "next/link"
 
 export default function RootLayout({ children }) {
     const info = useSelector((state) => state.personalInfo)
+    const path = usePathname();
+
+    console.log(path)
 
     return (
 
@@ -23,41 +28,41 @@ export default function RootLayout({ children }) {
                                     <div className="user">
                                         <div className="thumb-area">
                                             <div className="thumb">
-                                                <img src="./assets/images/dashboard/user.png" alt="user" />
+                                                <img src={info.avatar ? info.avatar : "https://www.pngkey.com/png/full/115-1150152_default-profile-picture-avatar-png-green.png"} alt="user" />
                                             </div>
                                             <label style={{ backgroundColor: '#8739e6' }} htmlFor="profile-pic" className="profile-pic-edit"><i className="fa-solid fa-pencil"></i></label>
                                             <input type="file" id="profile-pic" className="d-none" />
                                         </div>
                                         <div className="content">
-                                            <h5 className="title"><a href="#0">Percy Reed</a></h5>
-                                            <span className="username">john@gmail.com</span>
+                                            <h5 className="title"><a href="#0">{info.name}</a></h5>
+                                            <span className="username">{info.email}</span>
                                         </div>
                                     </div>
                                     <ul className="dashboard-menu">
                                         <li>
 
-                                            <a href="./dashboard" className="active">
+                                            <Link href="./dashboard" className={path === '/myaccount/dashboard' ? 'active' : ''}>
                                                 <i className="fa-solid fa-house-user"></i>
                                                 Dashboard
-                                            </a>
+                                            </Link>
                                         </li>
                                         <li>
-                                            <a href="./personalprofile"><i className="fa-solid fa-gears"></i>Personal Profile </a>
+                                            <Link href="./personalprofile" className={path === '/myaccount/personalprofile' ? 'active' : ''}><i className="fa-solid fa-gears"></i>Personal Profile </Link>
                                         </li>
                                         <li>
-                                            <a href="./mybid"><i className="fa-solid fa-gavel"></i>My Bids</a>
+                                            <Link href="./mybid" className={path === '/myaccount/mybid' ? 'active' : ''}><i className="fa-solid fa-gavel"></i>My Bids</Link>
                                         </li>
                                         <li>
-                                            <a href="./winningbid"><i className="fa-solid fa-trophy"></i>Winning Bids</a>
+                                            <Link href="./winningbid" className={path === '/myaccount/winningbid' ? 'active' : ''}><i className="fa-solid fa-trophy"></i>Winning Bids</Link>
                                         </li>
                                         <li>
-                                            <a href="./notification"><i className="fa-solid fa-bell"></i>My Alerts</a>
+                                            <Link href="./notification" className={path === '/myaccount/notification' ? 'active' : ''}><i className="fa-solid fa-bell"></i>My Alerts</Link>
                                         </li>
                                         <li>
-                                            <a href="./favorites"><i className="fa-solid fa-heart"></i>My Favorites</a>
+                                            <Link href="./favorites" className={path === '/myaccount/favorites' ? 'active' : ''}><i className="fa-solid fa-heart"></i>My Favorites</Link>
                                         </li>
                                         <li>
-                                            <a href="./referrals"><i className="fa-solid fa-link"></i>Referrals</a>
+                                            <Link href="./referrals" className={path === '/myaccount/referrals' ? 'active' : ''}><i className="fa-solid fa-link"></i>Referrals</Link>
                                         </li>
                                     </ul>
                                 </div>

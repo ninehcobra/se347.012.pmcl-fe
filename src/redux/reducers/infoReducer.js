@@ -5,7 +5,7 @@ const initialState = {
     name: '',
     avatar: '',
     address: '',
-    gender: '',
+    phoneNumber: '',
     isAuth: false,
 }
 
@@ -20,7 +20,7 @@ const actionForReducer = (state = initialState, payload) => {
                 name: data.name,
                 avatar: data.avatar,
                 address: data.address,
-                gender: data.gender,
+                phoneNumber: data.phoneNumber,
                 isAuth: true,
             }
 

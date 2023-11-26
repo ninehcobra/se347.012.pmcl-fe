@@ -29,7 +29,7 @@ export const AuthCheck = ({ children }) => {
                     address: res.DT.address,
                     avatar: res.DT.avatar,
                     email: res.DT.email,
-                    gender: res.DT.gender,
+                    phoneNumber: res.DT.phoneNumber,
                     roles: res.DT.roles
                 }
             }
