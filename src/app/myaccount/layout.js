@@ -43,26 +43,26 @@ export default function RootLayout({ children }) {
 
                                             <Link href="./dashboard" className={path === '/myaccount/dashboard' ? 'active' : ''}>
                                                 <i className="fa-solid fa-house-user"></i>
-                                                Dashboard
+                                                Bảng điều khiển
                                             </Link>
                                         </li>
                                         <li>
-                                            <Link href="./personalprofile" className={path === '/myaccount/personalprofile' ? 'active' : ''}><i className="fa-solid fa-gears"></i>Personal Profile </Link>
+                                            <Link href="./personalprofile" className={path === '/myaccount/personalprofile' ? 'active' : ''}><i className="fa-solid fa-gears"></i>Thông tin cá nhân</Link>
                                         </li>
                                         <li>
-                                            <Link href="./mybid" className={path === '/myaccount/mybid' ? 'active' : ''}><i className="fa-solid fa-gavel"></i>My Bids</Link>
+                                            <Link href="./mybid" className={path === '/myaccount/mybid' ? 'active' : ''}><i className="fa-solid fa-gavel"></i>Đấu giá của tôi</Link>
                                         </li>
                                         <li>
-                                            <Link href="./winningbid" className={path === '/myaccount/winningbid' ? 'active' : ''}><i className="fa-solid fa-trophy"></i>Winning Bids</Link>
+                                            <Link href="./winningbid" className={path === '/myaccount/winningbid' ? 'active' : ''}><i className="fa-solid fa-trophy"></i>Đấu giá thắng</Link>
                                         </li>
                                         <li>
-                                            <Link href="./notification" className={path === '/myaccount/notification' ? 'active' : ''}><i className="fa-solid fa-bell"></i>My Alerts</Link>
+                                            <Link href="./notification" className={path === '/myaccount/notification' ? 'active' : ''}><i className="fa-solid fa-bell"></i>Thông báo</Link>
                                         </li>
                                         <li>
-                                            <Link href="./favorites" className={path === '/myaccount/favorites' ? 'active' : ''}><i className="fa-solid fa-heart"></i>My Favorites</Link>
+                                            <Link href="./favorites" className={path === '/myaccount/favorites' ? 'active' : ''}><i className="fa-solid fa-heart"></i>Deal yêu thích</Link>
                                         </li>
                                         <li>
-                                            <Link href="./referrals" className={path === '/myaccount/referrals' ? 'active' : ''}><i className="fa-solid fa-link"></i>Referrals</Link>
+                                            <Link href="./referrals" className={path === '/myaccount/referrals' ? 'active' : ''}><i className="fa-solid fa-link"></i>Giới thiệu</Link>
                                         </li>
                                     </ul>
                                 </div>

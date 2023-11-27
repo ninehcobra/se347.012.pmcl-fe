@@ -36,13 +36,13 @@ const Header = () => {
                         </ul>
                         <ul style={info.name ? {} : { display: 'none' }} className="cart-button-area">
                             <li>
-                                <Link className="cart-button" href={'/'}>
+                                <div style={{ cursor: 'pointer' }} className="cart-button" >
                                     <i className="fa-solid fa-cart-shopping"></i>
                                     <span className="amount">08</span>
-                                </Link>
+                                </div>
                             </li>
                             <li>
-                                <a className="user-button" href={'/myaccount/dashboard'}>
+                                <a className="user-button" href={'/myaccount/personalprofile'}>
                                     <i className="fa-regular fa-user"></i>
                                 </a>
                             </li>

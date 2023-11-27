@@ -15,7 +15,7 @@ const BannerSection = () => {
                             <p>
                                 Đấu giá trực tuyến là nơi mọi người đến mua sắm, bán và cho đi, đồng thời khám phá sự đa dạng và khả năng chi trả.
                             </p>
-                            <Link href="#0" className="custom-button">Bắt đầu</Link>
+                            <a href="/login" className="custom-button">Bắt đầu</a>
                         </div>
                     </div>
                     <div className='d-none d-lg-block col-lg-6'>
