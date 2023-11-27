@@ -18,16 +18,33 @@ const Product = ({ params }) => {
         cssEase: "linear"
     };
 
+    function formatNumberWithCommas(number) {
+        var parts = number.toString().split('.');
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        return parts.join(',');
+    }
+
+    const calculateTimeRemaining = () => {
+        const now = new Date();
+        const endDateTimeObj = new Date(endDateTime);
+        const timeRemaining = endDateTimeObj - now;
+
+        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        return { days, hours, minutes, seconds };
+    };
+
     const fetchProductData = async () => {
-        console.log()
         let res = await getProductById(params.id)
 
 
 
         if (res && res.EC === 0 && res.DT !== null) {
-            console.log(images)
-            setData(res.DT)
 
+            setData(res.DT)
             setImages(JSON.parse(res.DT.images))
         }
 
@@ -37,7 +54,7 @@ const Product = ({ params }) => {
         fetchProductData()
     }, [])
 
-    console.log(images)
+    console.log(data)
 
     return (
         data ?
@@ -54,12 +71,18 @@ const Product = ({ params }) => {
                     <div className="container">
                         <div className="slider-wrapper">
                             <Slider {...settings}>
-                                <div className="slider-item">
-                                    <a className="browse-item">
-                                        <img src="https://pixner.net/sbidu/main/assets/images/auction/01.png"></img>
-                                        <span>XE cộ</span>
-                                    </a>
-                                </div>
+                                {images ?
+                                    images.map((item) => {
+                                        return (
+                                            <div style={{ backgroundColor: 'none !important' }} className="slider-item">
+                                                <a className="browse-item">
+                                                    <img style={{ height: '420px' }} src={item}></img>
+
+                                                </a>
+                                            </div>
+                                        )
+                                    })
+                                    : ''}
 
                             </Slider>
                         </div>
@@ -77,15 +100,12 @@ const Product = ({ params }) => {
                                     <ul className="price-table mb-30">
                                         <li className="header">
                                             <h5 className="current">Giá hiện tại</h5>
-                                            <h3 className="price">VN VNĐ {data.currentPrice}</h3>
+                                            <h3 className="price">VNĐ {formatNumberWithCommas(data.currentPrice)}</h3>
                                         </li>
+
                                         <li>
-                                            <span className="details">Buyer's Premium</span>
-                                            <h5 className="info">10.00%</h5>
-                                        </li>
-                                        <li>
-                                            <span className="details">Bid Increment (US)</span>
-                                            <h5 className="info">$50.00</h5>
+                                            <span className="details">Bước tăng (VNĐ)</span>
+                                            <h5 className="info">VNĐ {formatNumberWithCommas(500000)}</h5>
                                         </li>
                                     </ul>
                                     <div className="product-bid-area">
@@ -94,15 +114,14 @@ const Product = ({ params }) => {
                                                 <img src="https://pixner.net/sbidu/main/assets/images/product/search-icon.png" alt="product" />
                                             </div>
                                             <input type="text" placeholder="Enter you bid amount" />
-                                            <button type="submit" className="custom-button">Submit a bid</button>
+                                            <button type="submit" className="custom-button">Đặt giá</button>
                                         </form>
                                     </div>
                                     <div className="buy-now-area">
-                                        <a href="#0" className="custom-button">Buy Now: $4,200</a>
-                                        <a href="#0" className="rating custom-button active border"><i className="fas fa-star"></i> Add to Wishlist</a>
+                                        <a href="#0" className="rating custom-button active border"><i className="fas fa-star"></i>Thêm vào danh sách yêu thích</a>
                                         <div className="share-area">
-                                            <span>Share to:</span>
-                                            <ul>
+                                            <span>Chia sẽ:</span>
+                                            <ul style={{ marginTop: '20px' }}>
                                                 <li>
                                                     <a href="#0"><i className="fab fa-facebook-f"></i></a>
                                                 </li>
@@ -123,7 +142,7 @@ const Product = ({ params }) => {
                             <div className="col-lg-4">
                                 <div className="product-sidebar-area">
                                     <div className="product-single-sidebar mb-3">
-                                        <h6 className="title">This Auction Ends in:</h6>
+                                        <h6 className="title">Đấu giá này sẽ kết thúc:</h6>
                                         <div className="countdown">
                                             <div id="bid_counter1">0d  : 7h  : 40m  : 21s</div>
                                         </div>
