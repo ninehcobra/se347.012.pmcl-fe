@@ -93,7 +93,7 @@ const Product = ({ params }) => {
                                     <div className="product-details-header">
                                         <h2 className="title">{data.name}</h2>
                                         <ul>
-                                            <li>ID: {data.id}</li>
+                                            <li>ID ne: {data.id}</li>
 
                                         </ul>
                                     </div>
