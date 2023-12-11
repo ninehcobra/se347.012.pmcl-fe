@@ -21,14 +21,29 @@ const PriceForm = (params) => {
     const validation = () => {
         return !isNaN(price) && !isNaN(jumpPrice)
     }
+    function convertToArray(data) {
+        try {
+            const dataArray = JSON.parse(data);
 
+            // Kiểm tra xem có phải là mảng không
+            if (Array.isArray(dataArray)) {
+                return dataArray;
+            } else {
+                // Nếu không phải mảng, trả về một mảng chứa giá trị đơn
+                return [dataArray];
+            }
+        } catch (error) {
+            console.error('Error converting to array:', error);
+            return [];
+        }
+    }
     const handleSaveName = async () => {
         let check = validation()
         if (price && jumpPrice && check) {
             product.startPrice = price
             product.currentPrice = price
             product.jumpPrice = jumpPrice
-            product.images = null
+            product.images = convertToArray(product.images)
             console.log(product)
             let res = await updateProduct(product)
             if (res && res.EC === 0) {

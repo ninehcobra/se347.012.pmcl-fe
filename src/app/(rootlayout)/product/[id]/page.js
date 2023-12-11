@@ -9,6 +9,8 @@ const Product = ({ params }) => {
     const router = useRouter()
     const [data, setData] = useState()
     const [images, setImages] = useState()
+    const [endDate, setEndDate] = useState()
+    const [timeRemaining, setTimeRemaining] = useState(getTimeRemaining(endDate));
 
     const settings = {
         slidesToShow: 1,
@@ -18,24 +20,33 @@ const Product = ({ params }) => {
         cssEase: "linear"
     };
 
-    function formatNumberWithCommas(number) {
-        var parts = number.toString().split('.');
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-        return parts.join(',');
+
+    function getTimeRemaining(endDate) {
+        const targetDate = new Date(endDate).getTime();
+        const currentDate = new Date().getTime();
+        const timeDifference = targetDate - currentDate;
+
+        if (timeDifference <= 0) {
+            return {
+                days: 0,
+                hours: 0,
+                minutes: 0,
+                seconds: 0,
+            };
+        }
+
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        return {
+            days,
+            hours,
+            minutes,
+            seconds,
+        };
     }
 
-    const calculateTimeRemaining = () => {
-        const now = new Date();
-        const endDateTimeObj = new Date(endDateTime);
-        const timeRemaining = endDateTimeObj - now;
-
-        const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-        return { days, hours, minutes, seconds };
-    };
 
     const fetchProductData = async () => {
         let res = await getProductById(params.id)
@@ -46,15 +57,23 @@ const Product = ({ params }) => {
 
             setData(res.DT)
             setImages(JSON.parse(res.DT.images))
+            setEndDate(res.DT.endTime)
         }
 
     }
 
     useEffect(() => {
         fetchProductData()
-    }, [])
+        const intervalId = setInterval(() => {
+            setTimeRemaining(getTimeRemaining(endDate));
+        }, 1000);
 
-    console.log(data)
+        return () => clearInterval(intervalId);
+    }, [endDate])
+
+    const formatNumber = (number) => {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+    }
 
     return (
         data ?
@@ -93,19 +112,19 @@ const Product = ({ params }) => {
                                     <div className="product-details-header">
                                         <h2 className="title">{data.name}</h2>
                                         <ul>
-                                            <li>ID ne: {data.id}</li>
+                                            <li>ID sản phẩm: {data.id}</li>
 
                                         </ul>
                                     </div>
                                     <ul className="price-table mb-30">
                                         <li className="header">
                                             <h5 className="current">Giá hiện tại</h5>
-                                            <h3 className="price">VNĐ {formatNumberWithCommas(data.currentPrice)}</h3>
+                                            <h3 className="price">VNĐ {formatNumber(data.currentPrice)}</h3>
                                         </li>
 
                                         <li>
                                             <span className="details">Bước tăng (VNĐ)</span>
-                                            <h5 className="info">VNĐ {formatNumberWithCommas(500000)}</h5>
+                                            <h5 className="info">VNĐ {formatNumber(data.jumpPrice)}</h5>
                                         </li>
                                     </ul>
                                     <div className="product-bid-area">
@@ -113,7 +132,7 @@ const Product = ({ params }) => {
                                             <div className="search-icon">
                                                 <img src="https://pixner.net/sbidu/main/assets/images/product/search-icon.png" alt="product" />
                                             </div>
-                                            <input type="text" placeholder="Enter you bid amount" />
+                                            <input type="text" placeholder="Nhập giá muốn đấu giá" />
                                             <button type="submit" className="custom-button">Đặt giá</button>
                                         </form>
                                     </div>
@@ -144,7 +163,7 @@ const Product = ({ params }) => {
                                     <div className="product-single-sidebar mb-3">
                                         <h6 className="title">Đấu giá này sẽ kết thúc:</h6>
                                         <div className="countdown">
-                                            <div id="bid_counter1">0d  : 7h  : 40m  : 21s</div>
+                                            <div id="bid_counter1">{timeRemaining.days}d  : {timeRemaining.hours}h  : {timeRemaining.minutes}m  : {timeRemaining.seconds}s</div>
                                         </div>
                                         <div className="side-counter-area">
                                             <div className="side-counter-item">
@@ -153,7 +172,7 @@ const Product = ({ params }) => {
                                                 </div>
                                                 <div className="content">
                                                     <h3 className="count-title"><span className="counter">61</span></h3>
-                                                    <p>Active Bidders</p>
+                                                    <p>Người đấu giá đang hoạt động</p>
                                                 </div>
                                             </div>
                                             <div className="side-counter-item">
@@ -162,7 +181,7 @@ const Product = ({ params }) => {
                                                 </div>
                                                 <div className="content">
                                                     <h3 className="count-title"><span className="counter">203</span></h3>
-                                                    <p>Watching</p>
+                                                    <p>Đang theo dõi</p>
                                                 </div>
                                             </div>
                                             <div className="side-counter-item">
@@ -171,12 +190,12 @@ const Product = ({ params }) => {
                                                 </div>
                                                 <div className="content">
                                                     <h3 className="count-title"><span className="counter">82</span></h3>
-                                                    <p>Total Bids</p>
+                                                    <p>Tổng lượt đấu giá</p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <a href="#0" className="cart-link">View Shipping, Payment &amp; Auction Policies</a>
+                                    <a href="#0" className="cart-link">Xem chính sách giao hàng, thanh toán &amp; đấu giá</a>
                                 </div>
                             </div>
                         </div>
@@ -189,7 +208,7 @@ const Product = ({ params }) => {
                                         <div className="thumb">
                                             <img src="https://pixner.net/sbidu/main/assets/images/product/tab1.png" alt="product" />
                                         </div>
-                                        <div className="content">Description</div>
+                                        <div className="content">Mô tả</div>
                                     </a>
                                 </li>
                                 <li>
@@ -197,7 +216,7 @@ const Product = ({ params }) => {
                                         <div className="thumb">
                                             <img src="https://pixner.net/sbidu/main/assets/images/product/tab2.png" alt="product" />
                                         </div>
-                                        <div className="content">Delivery Options</div>
+                                        <div className="content">Phương thức giao hàng</div>
                                     </a>
                                 </li>
                                 <li>
@@ -205,7 +224,7 @@ const Product = ({ params }) => {
                                         <div className="thumb">
                                             <img src="https://pixner.net/sbidu/main/assets/images/product/tab3.png" alt="product" />
                                         </div>
-                                        <div className="content">Bid History (36)</div>
+                                        <div className="content">Lịch sử đấu giá (36)</div>
                                     </a>
                                 </li>
                                 <li>
@@ -213,7 +232,7 @@ const Product = ({ params }) => {
                                         <div className="thumb">
                                             <img src="https://pixner.net/sbidu/main/assets/images/product/tab4.png" alt="product" />
                                         </div>
-                                        <div className="content">Questions </div>
+                                        <div className="content">Câu hỏi thường gặp </div>
                                     </a>
                                 </li>
                             </ul>
@@ -223,97 +242,10 @@ const Product = ({ params }) => {
                         <div className="tab-content">
                             <div className="tab-pane fade show active" id="details">
                                 <div className="tab-details-content">
-                                    <div className="header-area">
-                                        <h3 className="title">2012 Ford Escape Hybrid (Brooklyn, NY 11214)</h3>
-                                        <div className="item">
-                                            <table className="product-info-table">
-                                                <tbody>
-                                                    <tr>
-                                                        <th>Condition</th>
-                                                        <td>New</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Mileage</th>
-                                                        <td>15,000 miles</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Year</th>
-                                                        <td>09-2017</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Engine</th>
-                                                        <td>I-4 1,5 l</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Fuel</th>
-                                                        <td>Regular</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Transmission</th>
-                                                        <td>Automatic</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Color</th>
-                                                        <td>Blue</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Doors</th>
-                                                        <td>5</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div className="item">
-                                            <h5 className="subtitle">NYC Fleet / DCAS units may be located at either of two locations:</h5>
-                                            <ul>
-                                                <li>Brooklyn, NY (1908 Shore Parkway)</li>
-                                                <li>Medford, NY (66 Peconic Ave)</li>
-                                            </ul>
-                                        </div>
-                                        <div className="item">
-                                            <h5 className="subtitle">This unit is located at:</h5>
-                                            <ul>
-                                                <li>Kenben Industries Ltd.</li>
-                                                <li>1908 Shore Parkway</li>
-                                                <li>Brooklyn, NY 11214</li>
-                                            </ul>
-                                        </div>
-                                        <div className="item">
-                                            <h5 className="subtitle">Acceptance of condition - buyer inspection/preview</h5>
-                                            <p>Vehicles and equipment often display significant wear and tear. Assets are sold AS IS with no warranty, express or implied, and we highly recommend previewing them before bidding. The preview period is the only opportunity to inspect an asset to verify condition and suitability. No refunds, adjustments or returns will be entertained. </p>
-                                            <p>Vehicle preview inspections of the vehicle can be done at the below location on Monday and Tuesday from 10am - 2pm. See Preview Rules Here.</p>
-                                            <ul>
-                                                <li>Kenben Industries Ltd.</li>
-                                                <li>1908 Shore Parkway</li>
-                                                <li>Brooklyn, NY 11214</li>
-                                            </ul>
-                                            <p>BUYER is responsible for all storage fees at time of pick-up. See above under IMPORTANT PICK-UP TIMES for specific requirements for this asset, but generally assets must be picked up within 2 business days of payment otherwise additional storage fees will be applied.</p>
-                                        </div>
-                                        <div className="item">
-                                            <h5 className="subtitle">Legal Notice</h5>
-                                            <p>Vehicles may not be driven off the lot except with a dealer plate affixed. By law, vehicles are not permitted to be parked on or to drive on the streets of New York without registration and plates registered to the vehicle. If the buyer cannot obtain the required registration and plates prior to pick up, they should have the vehicle towed at their own expense. The buyer should have the vehicle towed at their own expense.</p>
-                                            <p>Condition: Untested - Sold As-Is</p>
-                                            <p>Employees of Sbidu, its subcontractors and affiliated companies, employees of the NYC Government and those bidding on behalf of PropertyRoom.com, its subcontractors and affiliated companies and employees of the NYC Government are not permitted to bid on or purchase NYC Fleet/DCAS assets. </p>
-                                        </div>
-                                        <div className="item">
-                                            <h5 className="subtitle">Condition</h5>
-                                            <p>This ASSET is being listed on behalf of a law enforcement agency or other partner ("SELLER") by PropertyRoom.com on a Sold AS IS, WHERE IS, WITH ALL FAULTS basis, with no representation or warranty from PropertyRoom.com or SELLER. In many cases, the car, boat, truck, motorcycle, aircraft, mowers/tractors, etc. ("ASSET") sold on PropertyRoom.com comes from seizure or forfeiture, and the SELLER typically does not possess use-based knowledge of the ASSET. Further, PropertyRoom.com does not physically inspect the ASSET and cannot attest to actual working conditions. PropertyRoom.com and SELLER gather information about the ASSET from authoritative sources; still, errors may appear from time to time in the listing. PropertyRoom.com cautions any website user, shopper, bidder, etc. ("BUYER") to attempt to confirm, with us, information material to a bidding/purchasing decision.</p>
-                                        </div>
-                                        <div className="item">
-                                            <h5 className="subtitle">Bidding</h5>
-                                            <p>At this time Sbidu only accepts bidders from the United States, Canada and Mexico on Vehicles and Heavy Industrial Equipment. The Bid Now button will appear on auctions where you are qualified to place a bid.</p>
-                                        </div>
-                                        <div className="item">
-                                            <h5 className="subtitle">Buyer Responsibility</h5>
-                                            <p>The BUYER will receive an email notification from PropertyRoom.com following the close of an auction. After fraud verification and payment settlement, we will email the BUYER instructions for retrieving the ASSET from the Will-Call Location listed above.</p>
-                                            <p>All applicable shipping, logistics, transportation, customs, fees, taxes, export/import activities and all associated costs are the sole responsibility of the BUYER. No shipping, customs, export or import assistance is available from Sbidu.</p>
-                                            <p>When applicable for a given ASSET, BUYER bears responsibility for determining motor vehicle registration requirements in the applicable jurisdiction as well as costs, including any fees, registration fees, taxes, etc., owed as a result of BUYER registering an ASSET; for example, BUYER bears sole responsibility for all title/registration/smog and other such fees.</p>
-                                            <p>BUYER is responsible for all storage fees at time of pick-up. See above under IMPORTANT PICK-UP TIMES for specific requirements for this asset, but generally assets must be picked up within 2 business days of payment otherwise additional storage fees will be applied.</p>
-                                        </div>
-                                    </div>
+                                    <div dangerouslySetInnerHTML={{ __html: data.descriptionHTML }}></div>
                                 </div>
                             </div>
-                            <div className="tab-pane fade show" id="delevery">
+                            <div className="tab-pane fade " id="delevery">
                                 <div className="shipping-wrapper">
                                     <div className="item">
                                         <h5 className="title">shipping</h5>
@@ -349,7 +281,7 @@ const Product = ({ params }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="tab-pane fade show" id="history">
+                            <div className="tab-pane fade " id="history">
                                 <div className="history-wrapper">
                                     <div className="item">
                                         <h5 className="title">Bid History</h5>
@@ -448,7 +380,7 @@ const Product = ({ params }) => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="tab-pane fade show" id="questions">
+                            <div className="tab-pane fade " id="questions">
                                 <h5 className="faq-head-title">Frequently Asked Questions</h5>
                                 <div className="faq-wrapper">
                                     <div className="faq-item">

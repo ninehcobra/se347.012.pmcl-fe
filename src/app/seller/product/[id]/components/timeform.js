@@ -26,13 +26,35 @@ const TimeForm = (params) => {
     const [isSubmit, setIsSubmit] = useState(false)
 
     const router = useRouter()
+    function convertToArray(data) {
+        if (Array.isArray(data)) {
+            return data
+        }
+        else {
+            try {
+                const dataArray = JSON.parse(data);
+
+                // Kiểm tra xem có phải là mảng không
+                if (Array.isArray(dataArray)) {
+                    return dataArray;
+                } else {
+                    // Nếu không phải mảng, trả về một mảng chứa giá trị đơn
+                    return [dataArray];
+                }
+            } catch (error) {
+                console.log('Error converting to array:', error);
+                return null;
+            }
+        }
+
+    }
 
 
     const handleSaveName = async () => {
         if (startDate && endDate) {
             product.startTime = startDate
             product.endTime = endDate
-            product.images = null
+            product.images = convertToArray(product.images)
             console.log(product)
             let res = await updateProduct(product)
             if (res && res.EC === 0) {

@@ -71,7 +71,7 @@ const Product = ({ params }) => {
                                 <img src="https://raw.githubusercontent.com/ninehcobra/free-host-image/main/customize.png"></img>
                             </div>
                             <div className="customize-title">
-                                Tùy chỉnh sản phẩm của bạn
+                                Tùy chỉnh thông tin sản phẩm của bạn
                             </div>
                         </div>
 
@@ -85,10 +85,10 @@ const Product = ({ params }) => {
                     <div className="right-content">
                         <div className="customize-wrapper">
                             <div className="customize-icon">
-                                <img src="https://raw.githubusercontent.com/ninehcobra/free-host-image/main/customize.png"></img>
+                                <img src="https://raw.githubusercontent.com/ninehcobra/free-host-image/main/image.png"></img>
                             </div>
                             <div className="customize-title">
-                                Tùy chỉnh sản phẩm của bạn
+                                Tùy chỉnh ảnh sản phẩm của bạn
                             </div>
                         </div>
 
@@ -96,7 +96,15 @@ const Product = ({ params }) => {
                     </div>
                 </div>
 
-                <div>
+                <div style={{ padding: '15px' }} >
+                    <div style={{ marginBottom: '15px' }} className="customize-wrapper">
+                        <div className="customize-icon">
+                            <img src="https://raw.githubusercontent.com/ninehcobra/free-host-image/main/description.png"></img>
+                        </div>
+                        <div className="customize-title">
+                            Tùy mô tả sản phẩm của bạn
+                        </div>
+                    </div>
                     <DescriptionForm product={product} changeCompletionText={changeCompletionText} />
                 </div>
             </div>

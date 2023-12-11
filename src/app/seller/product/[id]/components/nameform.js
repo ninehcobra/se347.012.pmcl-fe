@@ -16,12 +16,27 @@ const NameForm = (params) => {
     const [isSubmit, setIsSubmit] = useState(false)
 
     const router = useRouter()
+    function convertToArray(data) {
+        try {
+            const dataArray = JSON.parse(data);
 
+            // Kiểm tra xem có phải là mảng không
+            if (Array.isArray(dataArray)) {
+                return dataArray;
+            } else {
+                // Nếu không phải mảng, trả về một mảng chứa giá trị đơn
+                return [dataArray];
+            }
+        } catch (error) {
+            console.error('Error converting to array:', error);
+            return [];
+        }
+    }
 
     const handleSaveName = async () => {
         if (name) {
             product.name = name
-            product.images = null
+            product.images = convertToArray(product.images)
             console.log(product)
             let res = await updateProduct(product)
             if (res && res.EC === 0) {
