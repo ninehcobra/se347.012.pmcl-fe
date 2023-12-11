@@ -21,6 +21,7 @@ const NameForm = (params) => {
     const handleSaveName = async () => {
         if (name) {
             product.name = name
+            product.images = null
             console.log(product)
             let res = await updateProduct(product)
             if (res && res.EC === 0) {
@@ -43,7 +44,7 @@ const NameForm = (params) => {
         <div className="title-form">
             <div className="title-form-label">
                 <div >
-                    Tên sản phẩm
+                    Tên sản phẩm đấu giá
                 </div>
                 {!isEditing
                     ?
@@ -62,9 +63,9 @@ const NameForm = (params) => {
 
             {isEditing ?
                 <div className="title-form-wrapper">
-                    <input onChange={(e) => setName(e.target.value)} value={name} placeholder="tên mới" />
+                    <input onChange={(e) => setName(e.target.value)} value={name} placeholder="Tên mới" />
 
-                    {!isSubmit ? <button onClick={handleSaveName}>Lưu</button> : <button disabled>Đang lưu...</button>}
+                    {!isSubmit ? <button className="btn-save" onClick={handleSaveName}>Lưu</button> : <button className="btn-save" disabled>Đang lưu...</button>}
 
                 </div> : <div>{product.name}</div>
             }

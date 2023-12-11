@@ -41,9 +41,22 @@ const updateProduct = async (data) => {
     }
 }
 
+const getCategory = async () => {
+    try {
+        let res = await axios.get(`/api/get-category`)
+        return res
+    } catch (error) {
+        return {
+            EC: -5,
+            EM: 'Can not connect to server'
+        }
+    }
+}
+
 
 export {
     getProductById,
     createProduct,
-    updateProduct
+    updateProduct,
+    getCategory
 }

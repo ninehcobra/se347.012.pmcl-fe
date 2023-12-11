@@ -4,6 +4,11 @@ import { useRouter } from 'next/navigation'
 import './product.scss'
 import { getProductById } from '@/services/productService'
 import NameForm from './components/nameform'
+import PriceForm from './components/priceform'
+import TimeForm from './components/timeform'
+import CategoryForm from './components/categoryform'
+import ThumbnailForm from './components/thumbnailform'
+import DescriptionForm from './components/descriptionform'
 
 const Product = ({ params }) => {
     const [product, setProduct] = useState()
@@ -52,30 +57,50 @@ const Product = ({ params }) => {
 
     return (
         product ?
-            <div className="course-wrapper">
-                <div className="left-content">
-                    <div className="create-course-process">
-                        <div className="title">Thiết lập sản phẩm đáu giá</div>
-                        <div className="process">Tiến độ thiết lập {completionText}</div>
-                    </div>
-
-                    <div className="customize-wrapper">
-                        <div className="customize-icon">
-                            <img src="https://raw.githubusercontent.com/ninehcobra/free-host-image/main/customize.png"></img>
-                        </div>
-                        <div className="customize-title">
-                            Tùy chỉnh sản phẩm của bạn
-                        </div>
-                    </div>
-
-
-                    <NameForm product={product} changeCompletionText={changeCompletionText} />
-                    <NameForm product={product} changeCompletionText={changeCompletionText} />
-
+            <div>
+                <div className="create-course-process">
+                    <div className="title">Thiết lập sản phẩm đáu giá</div>
+                    <div className="process">Tiến độ thiết lập {completionText}</div>
                 </div>
-                <div className="right-content">
+                <div className="course-wrapper">
+                    <div className="left-content">
+
+
+                        <div className="customize-wrapper">
+                            <div className="customize-icon">
+                                <img src="https://raw.githubusercontent.com/ninehcobra/free-host-image/main/customize.png"></img>
+                            </div>
+                            <div className="customize-title">
+                                Tùy chỉnh sản phẩm của bạn
+                            </div>
+                        </div>
+
+
+                        <NameForm product={product} changeCompletionText={changeCompletionText} />
+                        <PriceForm product={product} changeCompletionText={changeCompletionText} />
+                        <TimeForm product={product} changeCompletionText={changeCompletionText} />
+                        <CategoryForm product={product} changeCompletionText={changeCompletionText} />
+
+                    </div>
+                    <div className="right-content">
+                        <div className="customize-wrapper">
+                            <div className="customize-icon">
+                                <img src="https://raw.githubusercontent.com/ninehcobra/free-host-image/main/customize.png"></img>
+                            </div>
+                            <div className="customize-title">
+                                Tùy chỉnh sản phẩm của bạn
+                            </div>
+                        </div>
+
+                        <ThumbnailForm product={product} changeCompletionText={changeCompletionText} />
+                    </div>
+                </div>
+
+                <div>
+                    <DescriptionForm product={product} changeCompletionText={changeCompletionText} />
                 </div>
             </div>
+
             : ''
     )
 }
