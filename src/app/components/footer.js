@@ -1,8 +1,21 @@
 'use client'
 import Link from "next/link"
 import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
-const Footer = () => {
+const Footer = (params) => {
+    const [notification, setNotification] = useState(true)
+
+    useEffect(() => {
+        if (params && params.notification === false) {
+            console.log('2')
+            setNotification(params.notification)
+        }
+    }, [
+
+    ])
+
+
     const router = useRouter()
     return (
         <footer style={{ backgroundImage: 'url("https://pixner.net/sbidu/main/assets/images/footer/footer-bg.jpg")' }} className="bg_img padding-top oh">
@@ -29,25 +42,28 @@ const Footer = () => {
                     <img src="https://pixner.net/sbidu/main/assets/images/footer/c4.png" alt="footer" />
                 </div>
             </div>
-            <div className="newslater-wrapper">
-                <div className="container">
-                    <div className="newslater-area">
-                        <div className="newslater-thumb">
-                            <img src="https://pixner.net/sbidu/main/assets/images/footer/newslater.png"></img>
-                        </div>
-                        <div className="newslater-content">
-                            <div className="section-header">
-                                <h5 className="cate">Đăng ký theo dõi NINEH BIDING</h5>
-                                <h3 className="title">Để nhận được các thông báo về các ưu đãi sớm nhất. </h3>
+            {
+                notification ? <div className="newslater-wrapper">
+                    <div className="container">
+                        <div className="newslater-area">
+                            <div className="newslater-thumb">
+                                <img src="https://pixner.net/sbidu/main/assets/images/footer/newslater.png"></img>
                             </div>
-                            <form className="subscribe-form">
-                                <input type="text" placeholder="Nhập email của bản" name="email" />
-                                <button type="submit" className="custom-button">Đăng KÝ</button>
-                            </form>
+                            <div className="newslater-content">
+                                <div className="section-header">
+                                    <h5 className="cate">Đăng ký theo dõi NINEH BIDING</h5>
+                                    <h3 className="title">Để nhận được các thông báo về các ưu đãi sớm nhất. </h3>
+                                </div>
+                                <form className="subscribe-form">
+                                    <input type="text" placeholder="Nhập email của bản" name="email" />
+                                    <button type="submit" className="custom-button">Đăng KÝ</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </div> : ''
+            }
+
             <div className="footer-top padding-bottom padding-top">
                 <div className="container">
                     <div className="row mb--60">

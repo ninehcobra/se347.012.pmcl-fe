@@ -17,6 +17,7 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
+
   return (
     <html lang="en">
       <head>
@@ -26,7 +27,6 @@ export default function RootLayout({ children }) {
       </head>
       <body >
         <ReduxProvider>
-          <Header />
           {children}
           <ToastContainer
             position="bottom-right"
@@ -40,10 +40,10 @@ export default function RootLayout({ children }) {
             pauseOnHover
             theme="light"
           />
-          <Footer />
           <ScrollToTopButton />
         </ReduxProvider>
       </body>
     </html>
   )
+
 }

@@ -1,5 +1,5 @@
 'use client'
-import { AuthCheck } from "../components/authcheck"
+import { AuthCheck } from "../../components/authcheck"
 import { useDispatch, useSelector } from 'react-redux'
 import { usePathname } from 'next/navigation'
 import Link from "next/link"

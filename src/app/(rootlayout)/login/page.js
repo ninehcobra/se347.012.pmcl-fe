@@ -1,6 +1,6 @@
 'use client'
 import Link from "next/link"
-import axios from "../../setup/axios"
+import axios from "../../../setup/axios"
 import { useEffect, useState } from "react"
 import { login } from "@/services/userService"
 import { toast } from 'react-toastify';

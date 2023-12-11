@@ -4,7 +4,7 @@ import "./header.scss"
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 
-const Header = () => {
+const Header = (params) => {
     const [isVisible, setIsVisible] = useState(false);
     const info = useSelector((state) => state.personalInfo)
 
@@ -23,7 +23,7 @@ const Header = () => {
 
     return (
         <header>
-            <div className="header-top">
+            {params.fix ? '' : <div className="header-top">
                 <div className="container">
                     <div className="header-top-wrapper">
                         <ul className="customer-support">
@@ -49,8 +49,9 @@ const Header = () => {
                         </ul>
                     </div>
                 </div>
-            </div>
-            <div className={isVisible ? 'header-bottom active' : 'header-bottom '}>
+            </div>}
+
+            <div className={params.fix ? 'header-bottom active' : isVisible ? 'header-bottom active' : 'header-bottom '}>
                 <div className="container">
                     <div className="header-wrapper">
                         <div className="logo">

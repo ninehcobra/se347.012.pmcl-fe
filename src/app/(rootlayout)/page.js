@@ -1,9 +1,9 @@
 'use client'
 
 
-import BannerSection from "./components/bannersection"
-import BrowseSection from "./components/browsesection"
-import AuctionSection from "./components/auctionsection"
+import BannerSection from "../components/bannersection"
+import BrowseSection from "../components/browsesection"
+import AuctionSection from "../components/auctionsection"
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from "react"
 import { getUserAccount } from "@/services/userService"

@@ -1,3 +1,4 @@
+import { data } from 'autoprefixer'
 import axios from '../setup/axios'
 
 const getProductById = async (id) => {
@@ -11,6 +12,38 @@ const getProductById = async (id) => {
         }
     }
 }
+
+const createProduct = async (name) => {
+    try {
+        let res = await axios.post(`/api/create-product`, {
+            name: name
+        })
+        return res
+    } catch (error) {
+        return {
+            EC: -5,
+            EM: 'Can not connect to server'
+        }
+    }
+}
+
+const updateProduct = async (data) => {
+    try {
+        let res = await axios.post(`/api//update-product`, {
+            data: data
+        })
+        return res
+    } catch (error) {
+        return {
+            EC: -5,
+            EM: 'Can not connect to server'
+        }
+    }
+}
+
+
 export {
-    getProductById
+    getProductById,
+    createProduct,
+    updateProduct
 }
