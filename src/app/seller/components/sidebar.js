@@ -15,16 +15,16 @@ const Sidebar = ({ children }) => {
 
                     <ul className="sidebar_list">
                         <li>
-                            <Link aria-current="page" className={pathname === '/seller/product' || pathname === '/seller/create' || isCoursesIdPath ? "sidebar_item  onselect" : "sidebar_item"} href="/seller/product">
-                                <i className="fa-solid fa-book"></i>
+                            <a aria-current="page" className={pathname === '/seller/product' || pathname === '/seller/create' || isCoursesIdPath ? "sidebar_item  onselect" : "sidebar_item"} href="/seller/product">
+                                <i className="fa-solid fa-store"></i>
                                 <span>Sản phẩm</span>
-                            </Link>
+                            </a>
                         </li>
                         <li>
-                            <Link className={pathname === "/seller/analytics" ? "sidebar_item  onselect" : "sidebar_item"} href="/seller/analytics">
+                            <a className={pathname === "/seller/analytics" ? "sidebar_item  onselect" : "sidebar_item"} href="/seller/analytics">
                                 <i className="fa-solid fa-chart-simple"></i>
                                 <span>Thống kê</span>
-                            </Link>
+                            </a>
                         </li>
                     </ul>
                 </div>

@@ -3,7 +3,7 @@ import Footer from "../components/footer"
 
 const RootLayout = ({ children }) => {
     return (
-        <body>
+        <body suppressHydrationWarning={true}>
             <Header />
             {children}
             <Footer />

@@ -43,7 +43,7 @@ const TimeForm = (params) => {
                 }
             } catch (error) {
                 console.log('Error converting to array:', error);
-                return null;
+                return data;
             }
         }
 
@@ -54,7 +54,7 @@ const TimeForm = (params) => {
         if (startDate && endDate) {
             product.startTime = startDate
             product.endTime = endDate
-            product.images = convertToArray(product.images)
+            product.images = product.images && product.images.length > 0 ? convertToArray(product.images) : null
             console.log(product)
             let res = await updateProduct(product)
             if (res && res.EC === 0) {
@@ -65,6 +65,7 @@ const TimeForm = (params) => {
                 setIsEditing(false)
                 setIsSubmit(false)
                 router.refresh()
+                params.setRefesh(!params.refresh)
             }
         }
         else {
@@ -101,13 +102,13 @@ const TimeForm = (params) => {
         <div className="title-form">
             <div className="title-form-label">
                 <div >
-                    Tên sản phẩm đấu giá
+                    Thời gian đấu giá
                 </div>
                 {!isEditing
                     ?
                     <div className="edit-btn" onClick={() => setIsEditing(true)} style={{ display: 'flex', alignItems: 'center' }}>
                         <i class="fa-solid fa-pencil"></i>
-                        <div style={{ marginLeft: '12px' }}>Sửa tên</div>
+                        <div style={{ marginLeft: '12px' }}>Sửa thời gian</div>
                     </div>
                     :
 

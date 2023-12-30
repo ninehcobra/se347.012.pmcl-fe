@@ -18,6 +18,7 @@ const CategoryForm = (params) => {
     const [categoryId, setCateGoryId] = useState()
     const [name, setName] = useState(null)
 
+
     const router = useRouter()
 
     const fetchCategory = async () => {
@@ -46,15 +47,16 @@ const CategoryForm = (params) => {
             }
         } catch (error) {
             console.error('Error converting to array:', error);
-            return [];
+            return data;
         }
     }
 
     const handleSaveName = async () => {
         if (categoryId) {
             product.categoryId = categoryId
-            product.images = convertToArray(product.images)
-            console.log(product)
+
+            product.images = product.images && product.images.length > 0 ? convertToArray(product.images) : null
+            console.log(product.images)
             let res = await updateProduct(product)
             if (res && res.EC === 0) {
                 changeCompletionText(product)
@@ -63,6 +65,7 @@ const CategoryForm = (params) => {
                 setIsEditing(false)
                 setIsSubmit(false)
                 router.refresh()
+                params.setRefesh(!params.refresh)
             }
         }
         else {
@@ -96,7 +99,7 @@ const CategoryForm = (params) => {
                     ?
                     <div className="edit-btn" onClick={() => setIsEditing(true)} style={{ display: 'flex', alignItems: 'center' }}>
                         <i class="fa-solid fa-pencil"></i>
-                        <div style={{ marginLeft: '12px' }}>Sửa tên</div>
+                        <div style={{ marginLeft: '12px' }}>Sửa danh mục</div>
                     </div>
                     :
 

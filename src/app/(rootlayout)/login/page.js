@@ -24,7 +24,7 @@ const Login = () => {
     const fetchUser = async () => {
         let res = await getUserAccount()
         if (res && res.EC === 0 && res.DT) {
-            router.push('/myaccount/dashboard')
+            router.push('/product')
         }
     }
 
@@ -58,7 +58,7 @@ const Login = () => {
                 }
                 localStorage.setItem("jwt", res.DT.access_token)
                 toast('Đăng nhập thành công')
-                router.push('/myaccount/dashboard')
+                router.push('/product')
             }
             else if (res.EC === 3) {
                 toast.error('Sai mật khẩu!')
@@ -81,6 +81,7 @@ const Login = () => {
     useEffect(() => {
         fetchUser()
     }, [])
+
     return (
         <div>
             <div className="hero-section">

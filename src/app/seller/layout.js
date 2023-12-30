@@ -1,12 +1,14 @@
-import Footer from "../components/footer"
-import Header from "../components/header"
+
+
 import Sidebar from "./components/sidebar"
 import { AuthCheck } from "../components/authcheck"
+import Header from "./components/header"
 
 const Layout = ({ children }) => {
     return (
         <div>
             <AuthCheck>
+                <Header></Header>
                 <Sidebar >
                     {children}
                 </Sidebar>

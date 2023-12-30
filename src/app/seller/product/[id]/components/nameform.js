@@ -29,14 +29,14 @@ const NameForm = (params) => {
             }
         } catch (error) {
             console.error('Error converting to array:', error);
-            return [];
+            return data;
         }
     }
 
     const handleSaveName = async () => {
         if (name) {
             product.name = name
-            product.images = convertToArray(product.images)
+            product.images = product.images && product.images.length > 0 ? convertToArray(product.images) : null
             console.log(product)
             let res = await updateProduct(product)
             if (res && res.EC === 0) {
@@ -46,6 +46,7 @@ const NameForm = (params) => {
                 setIsEditing(false)
                 setIsSubmit(false)
                 router.refresh()
+                params.setRefesh(!params.refresh)
             }
         }
         else {

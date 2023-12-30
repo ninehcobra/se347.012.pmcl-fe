@@ -71,6 +71,7 @@ const ThumbnailForm = (params) => {
                 setIsSubmit(false)
                 setArrImages(linkThumnails)
                 router.refresh()
+                params.setRefesh(!params.refresh)
             }
         }
         else {

@@ -8248,7 +8248,7 @@ div[class*="auction"] .custom-button {
 
 .alert-widget ul li input:checked::after {
     opacity: 1;
-    background: url('') no-repeat center center;
+
 }
 
 .alert-widget ul li label {
@@ -9047,5 +9047,19 @@ button.custom-button {
     text-transform: capitalize;
     font-size: 16px;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.pagination .active a {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+}
+
+
 
 /*All Animation Ends Here*/

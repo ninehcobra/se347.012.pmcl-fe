@@ -41,7 +41,7 @@ const DescriptionForm = (params) => {
             }
         } catch (error) {
             console.error('Error converting to array:', error);
-            return [];
+            return data;
         }
     }
 
@@ -49,7 +49,7 @@ const DescriptionForm = (params) => {
         if (descriptionHTML && descriptionMarkdown) {
             product.descriptionHTML = descriptionHTML
             product.descriptionMarkdown = descriptionMarkdown
-            product.images = convertToArray(product.images)
+            product.images = product.images && product.images.length > 0 ? convertToArray(product.images) : null
             console.log(product)
             let res = await updateProduct(product)
             if (res && res.EC === 0) {
