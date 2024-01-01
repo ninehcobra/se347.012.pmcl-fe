@@ -30,7 +30,8 @@ export const AuthCheck = ({ children }) => {
                     avatar: res.DT.avatar,
                     email: res.DT.email,
                     phoneNumber: res.DT.phoneNumber,
-                    roles: res.DT.roles
+                    roles: res.DT.roles,
+                    id: res.DT.id
                 }
             }
             await dispatch(loginRedux(data))

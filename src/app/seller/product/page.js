@@ -49,6 +49,11 @@ const Product = () => {
         setCurrentPage(event.selected + 1)
     }
 
+    const formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    });
+
     return (
         <div className="course-wrapper">
 
@@ -105,7 +110,7 @@ const Product = () => {
                                 return (
                                     <tr style={{ border: '1px solid #80808033' }}>
                                         <td>{item.name}</td>
-                                        <td>{item.currentPrice ? item.currentPrice : '0'} VNĐ</td>
+                                        <td>{item.currentPrice ? formatter.format(item.currentPrice) : formatter.format(0)} </td>
                                         <td >{item.isPublished ?
                                             <div style={{ height: '25px', width: '80px', backgroundColor: '#0268A0', color: 'white', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '5px' }}>
                                                 Công khai
@@ -115,7 +120,7 @@ const Product = () => {
                                                 Ẩn
                                             </div>
                                         }</td>
-                                        <th><CountDowm endDate={item.endTime} /></th>
+                                        <th><CountDowm startDate={item.startTime} endDate={item.endTime} /></th>
                                         <th><a style={{ textDecoration: 'none' }} href={`/seller/product/${item.id}`}>...</a></th>
                                     </tr>
                                 )

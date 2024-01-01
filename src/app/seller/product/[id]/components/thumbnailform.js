@@ -62,6 +62,7 @@ const ThumbnailForm = (params) => {
         if (images) {
             let linkThumnails = await uploadImages(images)
             product.images = linkThumnails
+            product.type = 1
             let res = await updateProduct(product)
             if (res && res.EC === 0) {
                 changeCompletionText(product)

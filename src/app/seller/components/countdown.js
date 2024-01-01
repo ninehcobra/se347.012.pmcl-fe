@@ -1,15 +1,27 @@
 'use client'
-
 import { useEffect, useState } from "react";
 
 const CountDown = (params) => {
-    const [timeRemaining, setTimeRemaining] = useState(getTimeRemaining(params.endDate));
+    const [timeRemaining, setTimeRemaining] = useState(getTimeRemaining(params.startDate, params.endDate));
 
-    function getTimeRemaining(endDate) {
+    function getTimeRemaining(startDate, endDate) {
+        const currentDateTime = new Date().getTime();
+
+        // Kiểm tra nếu chưa đến thời gian bắt đầu
+        if (startDate && currentDateTime < new Date(startDate).getTime()) {
+            const timeDifference = new Date(startDate).getTime() - currentDateTime;
+            const daysLeft = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+
+            return {
+                daysLeft,
+                isNotStarted: true, // Thêm trạng thái isNotStarted khi chưa bắt đầu
+            };
+        }
+
         const targetDate = new Date(endDate).getTime();
-        const currentDate = new Date().getTime();
-        const timeDifference = targetDate - currentDate;
+        const timeDifference = targetDate - currentDateTime;
 
+        // Kiểm tra nếu đã hết thời gian
         if (timeDifference <= 0) {
             return {
                 days: 0,
@@ -31,20 +43,23 @@ const CountDown = (params) => {
             minutes,
             seconds,
             isExpired: false,
+            isNotStarted: false,
         };
     }
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            setTimeRemaining(getTimeRemaining(params.endDate));
+            setTimeRemaining(getTimeRemaining(params.startDate, params.endDate));
         }, 1000);
 
         return () => clearInterval(intervalId);
-    }, [params.endDate]);
+    }, [params.startDate, params.endDate]);
 
     return (
         <div>
-            {timeRemaining.isExpired ? (
+            {timeRemaining.isNotStarted ? (
+                <span>Bắt đầu sau {timeRemaining.daysLeft} ngày</span>
+            ) : timeRemaining.isExpired ? (
                 <span>Đã kết thúc</span>
             ) : (
                 <span>

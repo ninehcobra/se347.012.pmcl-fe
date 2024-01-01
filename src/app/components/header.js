@@ -36,10 +36,9 @@ const Header = (params) => {
                         </ul>
                         <ul style={info.name ? {} : { display: 'none' }} className="cart-button-area">
                             <li>
-                                <div style={{ cursor: 'pointer' }} className="cart-button" >
-                                    <i className="fa-solid fa-cart-shopping"></i>
-                                    <span className="amount">08</span>
-                                </div>
+                                <a href="/myaccount/favorites" style={{ cursor: 'pointer' }} className="cart-button" >
+                                    <i className="fa-solid fa-heart"></i>
+                                </a>
                             </li>
                             <li>
                                 <a className="user-button" href={'/myaccount/personalprofile'}>
@@ -61,36 +60,17 @@ const Header = (params) => {
                             <div>NINEH BIDING</div>
                         </div>
                         <ul className="menu ml-auto ">
-                            <li className="menu-item-has-children">
+                            <li >
                                 <Link href={"/"}>Trang chủ</Link>
-                                <ul className="submenu">
-                                    <li>
-                                        <Link href={"/"}>homepage 1</Link>
-                                    </li>
-                                    <li>
-                                        <Link href={"/"}>homepage 1</Link>
-                                    </li>
-                                    <li>
-                                        <Link href={"/"}>homepage 1</Link>
-                                    </li>
-                                </ul>
                             </li>
                             <li>
-                                <Link href={'/'}>Đấu giá</Link>
-                            </li>
-                            <li>
-                                <Link href={'/'}>Blog</Link>
+                                <Link href={'/product'}>Đấu giá</Link>
                             </li>
                             <li>
                                 <Link href={'/'}>Liên hệ</Link>
                             </li>
                         </ul>
-                        <form className="search-form">
-                            <input type="text" placeholder="Tìm thương hiệu, mẫu mã,...."></input>
-                            <button>
-                                <i className="fa-solid fa-magnifying-glass"></i>
-                            </button>
-                        </form>
+
                     </div>
                 </div>
             </div>

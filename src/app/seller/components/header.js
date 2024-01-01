@@ -40,8 +40,8 @@ const Header = (params) => {
 
     return (
         <div className="navbar_wrapper">
-            <Link href="/dashboard" style={{ textDecoration: 'none' }} className="navbar_logo">
-                <Link href="/dashboard">
+            <Link href="/" style={{ textDecoration: 'none' }} className="navbar_logo">
+                <Link href="/">
                     <img src="https://raw.githubusercontent.com/ninehcobra/free-host-image/main/News/logo.png" alt="nineh" />
                 </Link>
                 <h4 style={params && params.searchHide ? { display: 'none' } : {}} className="navbar_logo_heading">Nineh Biding</h4>

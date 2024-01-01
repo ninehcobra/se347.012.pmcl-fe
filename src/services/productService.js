@@ -1,4 +1,4 @@
-import { data } from 'autoprefixer'
+
 import axios from '../setup/axios'
 
 const getProductById = async (id) => {
@@ -66,11 +66,88 @@ const getOwnProduct = async (option) => {
     }
 }
 
+const getDashboardProduct = async (option) => {
+    try {
+        let res = await axios.get(`/api/get-dashboard-product?categoryId=${option && option.categoryId ? option.categoryId : ''}&sortByPrice=${option ? option.sortByPrice : ''}&productName=${option && option.name ? option.name : ''}&limit=${option.limit}&page=${option.currentPage}`)
+        return res
+    } catch (error) {
+        return {
+            EC: -5,
+            EM: 'Can not connect to server'
+        }
+    }
+}
+
+const getWonProducts = async () => {
+    try {
+        let res = await axios.get(`/api/get-won-products`)
+        return res
+    } catch (error) {
+        return {
+            EC: -5,
+            EM: 'Can not connect to server'
+        }
+    }
+}
+
+const addFavorite = async (id) => {
+    try {
+        let res = await axios.post(`/api/add-favorite`, { id: id })
+        return res
+    } catch (error) {
+        return {
+            EC: -5,
+            EM: 'Can not connect to server'
+        }
+    }
+}
+
+const removeFavorite = async (id) => {
+    try {
+        let res = await axios.post(`/api/remove-favorite`, { id: id })
+        return res
+    } catch (error) {
+        return {
+            EC: -5,
+            EM: 'Can not connect to server'
+        }
+    }
+}
+
+const getFavorite = async (option) => {
+    try {
+        let res = await axios.get(`/api/get-favorite?categoryId=${option && option.categoryId ? option.categoryId : ''}&productName=${option && option.name ? option.name : ''}&limit=${option.limit}&page=${option.currentPage}`)
+        return res
+    } catch (error) {
+        return {
+            EC: -5,
+            EM: 'Can not connect to server'
+        }
+    }
+}
+
+const payProduct = async (id) => {
+    try {
+        let res = await axios.post(`/api/pay-product`, { id: id })
+        return res
+    } catch (error) {
+        return {
+            EC: -5,
+            EM: 'Can not connect to server'
+        }
+    }
+}
 
 export {
     getProductById,
     createProduct,
     updateProduct,
     getCategory,
-    getOwnProduct
+    getOwnProduct,
+    getDashboardProduct,
+    getWonProducts,
+    addFavorite,
+    removeFavorite,
+    getFavorite,
+    payProduct
 }

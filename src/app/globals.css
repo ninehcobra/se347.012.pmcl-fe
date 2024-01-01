@@ -9060,6 +9060,25 @@ button.custom-button {
     border-radius: 5px;
 }
 
+/* nextjs-portal {
+    display: none;
+} */
 
+table {
+    width: 100%;
+    border: 1px solid #808080;
+}
+
+th {
+    padding: 4px;
+    border: 1px solid #808080 !important;
+    background-color: #80808033;
+    font-size: 18px;
+}
+
+td {
+    padding: 4px;
+    border: 1px solid #808080 !important;
+}
 
 /*All Animation Ends Here*/
